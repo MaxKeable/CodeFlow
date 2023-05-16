@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS study_db;
+CREATE DATABASE study_db;
