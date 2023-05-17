@@ -14,10 +14,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a single reader
+// Get a single User
 router.get("/:id", async (req, res) => {
   try {
-    const userData = await User.findBypk(req.params.id, {
+    const userData = await User.findByPk(req.params.id, {
       include: [{ model: Note }, { model: CodeSnippet }],
     });
 
@@ -31,11 +31,39 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Post
+// Create a user, if successful, send the created user data as a JSON responses
+// if error, send 400 (bad request) and errors as a json response
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
     res.status(200).json(userData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Link sign-up form to MySQL database
+router.post("/signup", async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    const newUser = await User.create({ name, password });
+    res.status(200).json(newUser, { message: "Created successfully" });
+  } catch (err) {
+    res.status(400).json({ message: "Failed to create user" });
+  }
+});
+
+// Link login form to MySQL databse
+router.post("/login", async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    const user = await User.findOne({ where: { name } });
+
+    if (user && user.password === password) {
+      res.status(200).json({ message: "Login successful" });
+    } else {
+      res.status(401).json({ message: "Failed to login" });
+    }
   } catch (err) {
     res.status(400).json(err);
   }
