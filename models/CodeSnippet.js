@@ -37,3 +37,4 @@ CodeSnippet.init(
     modelName: "code_snippet",
   }
 );
+module.exports = CodeSnippet;
