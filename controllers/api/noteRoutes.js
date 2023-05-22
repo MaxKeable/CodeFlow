@@ -3,7 +3,7 @@ const router = require("express").Router();
 const { User, Note, CodeSnippet } = require("../../models");
 
 // Get all notes
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const noteData = await Note.findAll({
       include: [{ model: User }, { model: CodeSnippet }],
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get a single note
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const noteData = await Note.findBypk(req.params.id, {
       include: [{ model: User }, { model: CodeSnippet }],
@@ -31,14 +31,39 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Post
-router.post("/", async (req, res) => {
+// Create
+router.post("/", withAuth, async (req, res) => {
   try {
-    const noteData = await Note.create(req.body);
+    const noteData = await Note.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    }
+);
     res.status(200).json(noteData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const noteData = await Note.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
+
+    if (!noteData) {
+      res.status(404).json({ message: 'No Note found with this id!' });
+      return;
+    }
+
+    res.status(200).json(noteData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

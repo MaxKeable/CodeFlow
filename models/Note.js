@@ -34,3 +34,4 @@ Note.init(
     modelName: "note",
   }
 );
+module.exports = Note;

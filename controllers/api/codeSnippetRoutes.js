@@ -1,9 +1,10 @@
 const router = require("express").Router();
 // Include all the models: User, Note, CodeSnippet
 const { User, Note, CodeSnippet } = require("../../models");
+const withAuth = require('../../utils/auth');
 
 // Get all code snippets
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const codeSnippetData = await CodeSnippet.findAll({
       include: [{ model: User }, { model: Note }],
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get a single code snippet
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const codeSnippetData = await CodeSnippet.findBypk(req.params.id, {
       include: [{ model: User }, { model: Note }],
@@ -31,14 +32,39 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Post
-router.post("/", async (req, res) => {
+// Create
+router.post("/", withAuth, async (req, res) => {
   try {
-    const codeSnippetData = await CodeSnippet.create(req.body);
+    const codeSnippetData = await CodeSnippet.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    }
+);
     res.status(200).json(codeSnippetData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const codeSnippetData = await CodeSnippet.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
+
+    if (!codeSnippetData) {
+      res.status(404).json({ message: 'No code snippet found with this id!' });
+      return;
+    }
+
+    res.status(200).json(codeSnippetData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
