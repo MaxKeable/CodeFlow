@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // Include all the models: User, Note, CodeSnippet
-const { User, Note, CodeSnippet } = require("../../models");
+const { User, Note, CodeSnippet } = require("../../../models");
 
 // Get all notes
 router.get("/", withAuth, async (req, res) => {
