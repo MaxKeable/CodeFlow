@@ -1,6 +1,7 @@
 const router = require("express").Router();
 // Include all the models: User, Note, CodeSnippet
-const { User, Note, CodeSnippet } = require("../../../models");
+const { User, Note, CodeSnippet } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // Get all notes
 router.get("/", withAuth, async (req, res) => {
@@ -37,15 +38,14 @@ router.post("/", withAuth, async (req, res) => {
     const noteData = await Note.create({
       ...req.body,
       user_id: req.session.user_id,
-    }
-);
+    });
     res.status(200).json(noteData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const noteData = await Note.destroy({
       where: {
@@ -55,7 +55,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!noteData) {
-      res.status(404).json({ message: 'No Note found with this id!' });
+      res.status(404).json({ message: "No Note found with this id!" });
       return;
     }
 
@@ -64,6 +64,5 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;
