@@ -1,0 +1,22 @@
+.header{ 
+    background-color: cornflowerblue;
+    color: white;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+.btn {
+    background-color: white;
+    color: cornflowerblue;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration: none;
+
+}
+
+body {
+    margin: 0px;
+}
