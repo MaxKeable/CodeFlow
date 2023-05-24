@@ -1,3 +1,12 @@
+:root {
+     --primary-color: #003358;
+     --secondary-color: #06BDA8;
+     --darkGreen-color: #007971;
+     --green-color: #02A36A;
+     --lightGreen-color: #65FFBF;
+}
+
+
 .header{ 
     background-color: cornflowerblue;
     color: white;
@@ -19,4 +28,48 @@
 
 body {
     margin: 0px;
+}
+
+.homepage-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.sign-up-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+
+.sign-up-details h2 {
+    color: var(--secondary-color);
+}
+
+.sign-up-details h3 {
+    color: var(--secondary-color);
+}
+
+.sign-up-details p {
+    color: white;
+}
+
+.sign-up-page {
+    display: flex;
 }
