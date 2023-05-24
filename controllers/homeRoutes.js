@@ -78,4 +78,16 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/note");
+    return;
+  }
+  res.render("login");
+});
+
+router.get("/homepage", (req, res) => {
+  res.render("homepage");
+});
+
 module.exports = router;
