@@ -1,75 +1,202 @@
 :root {
-     --primary-color: #003358;
-     --secondary-color: #06BDA8;
-     --darkGreen-color: #007971;
-     --green-color: #02A36A;
-     --lightGreen-color: #65FFBF;
-}
-
-
-.header{ 
-    background-color: cornflowerblue;
-    color: white;
-    height: 100px;
-    padding: 10px;
-    box-sizing: border-box;
-    
-}
-
-.btn {
-    background-color: white;
-    color: cornflowerblue;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    text-decoration: none;
-
+  --primary-color: #003358;
+  --secondary-color: #06bda8;
+  --darkGreen-color: #007971;
+  --green-color: #02a36a;
+  --lightGreen-color: #65ffbf;
 }
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 .homepage-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-left: 40px;
-    margin-right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 50px 5px 50px;
+  background-color: var(--primary-color);
+}
+
+.homepage-nav button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 20px;
+  border: solid 2px var(--darkGreen-color);
+  border-radius: 5px;
+}
+
+.homepage-nav button:hover {
+  background-color: var(--darkGreen-color);
+  color: white;
+}
+
+.homepage-nav h1 {
+  color: white;
+}
+
+.homepage-nav h2 {
+  color: white;
+}
+
+.forms-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 50%;
 }
 
 .sign-up-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f8f9fa;
+  margin: 20px;
+  padding: 30px;
+  border: solid 0.5px var(--darkGreen-color);
+  border-radius: 10px;
+  box-shadow: var(--primary-color) 2px 2px 10px;
+  color: var(--primary-color);
+}
+
+.sign-up-form button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+}
+
+.sign-up-form h2 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.sign-up-form input {
+  margin: 3px 0;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px var(--darkGreen-color);
+}
+
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f8f9fa;
+  margin: 20px;
+  padding: 30px;
+  border: solid 0.5px var(--darkGreen-color);
+  border-radius: 10px;
+  box-shadow: var(--primary-color) 2px 2px 10px;
+  color: var(--primary-color);
+}
+
+.log-in-form button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+}
+
+.log-in-form h2 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.log-in-form input {
+  margin: 3px 0;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px var(--darkGreen-color);
 }
 
 .sign-up-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100vh;
-    background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+  background-color: var(--primary-color);
 }
 
 .sign-up-details h2 {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .sign-up-details h3 {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .sign-up-details p {
-    color: white;
+  color: white;
 }
 
 .sign-up-page {
-    display: flex;
+  display: flex;
+}
+
+.week-btn-div {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+}
+
+.week-btn-div button {
+  padding: 5px;
+  font-size: 0.8em;
+  border: none;
+  background-color: #f8f9fa;
+  color: var(--primary-color);
+}
+
+.week-btn-div button:hover {
+  background-color: var(--darkGreen-color);
+}
+
+.week-btn-div h2 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.main-wrapper {
+  display: flex;
+  margin-top: 30px;
+}
+
+.main-section {
+  width: 85vw;
+  min-height: 100vh;
+  margin-left: 3%;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+}
+
+.notes-header button {
+  background-color: var(--primary-color);
+  color: white;
+  border: solid 2px var(--darkGreen-color);
+  padding: 5px 20px;
+}
+
+.notes-header button:hover {
+  background-color: var(--darkGreen-color);
+  color: white;
+}
+
+.notes-header h2 {
+  color: var(--primary-color);
 }
