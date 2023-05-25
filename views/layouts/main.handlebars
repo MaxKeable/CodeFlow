@@ -10,15 +10,23 @@
 </head>
 
 <body>
-    <header class ="header"><nav> <div class = "navigation">
-        <a class= "btn" href="/signup">Sign-up page</a>
-    </div> </nav> </header>
+    <header class ="header">
+        <nav> 
+            <div class = "navigation">
+        <a class= "btn" href="/signup">Sign-up page</a></div> 
+    </nav>
+     </header>
     
     
     <main>
          {{{ body }}}
     </main>
     <footer class ="footer"> </footer>
+
+{{#if logged_in}}
+  <script src="../public/js/logout.js"></script>
+  {{/if}}
+
 </body>
 
 </html>
