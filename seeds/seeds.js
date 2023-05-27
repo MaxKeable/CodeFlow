@@ -1,8 +1,9 @@
 const sequelize = require("../config/connection");
-const { User, Note } = require("../models");
+const { User, Note, CodeSnippet } = require("../models");
 
 const userData = require("./userData.json");
 const noteData = require("./noteData.json");
+const codesnippetData = require("./codesnippetData.json");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -15,6 +16,13 @@ const seedDatabase = async () => {
   for (const note of noteData) {
     await Note.create({
       ...note,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
+
+  for (const codesnippet of codesnippetData) {
+    await CodeSnippet.create({
+      ...codesnippet,
       user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
