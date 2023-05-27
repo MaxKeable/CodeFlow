@@ -9,7 +9,7 @@ const signupFormHandler = async (event) => {
     .querySelector("#signup-password-confirm")
     .value.trim();
 
-  console.log(firstName, lastName, email, password, confirmpassword);
+  // console.log(firstName, lastName, email, password, confirmpassword);
 
   if (firstName && lastName && email && password && confirmpassword) {
     if (password !== confirmpassword) {
@@ -29,16 +29,12 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/homepage");
+      document.location.replace("/");
     } else {
       alert(response.statusText);
     }
   }
 };
-
-document
-  .querySelector("#signup-submit")
-  .addEventListener("click", signupFormHandler);
 
 const signinFormHandler = async (event) => {
   event.preventDefault();
@@ -59,8 +55,10 @@ const signinFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/homepage");
+      console.log("[DORIS]: ok");
+      document.location.replace("/");
     } else {
+      console.log("[DORIS]: not ok");
       alert(response.statusText);
     }
   }
@@ -69,3 +67,7 @@ const signinFormHandler = async (event) => {
 document
   .querySelector("#signin-submit")
   .addEventListener("click", signinFormHandler);
+
+document
+  .querySelector("#signup-submit")
+  .addEventListener("click", signupFormHandler);

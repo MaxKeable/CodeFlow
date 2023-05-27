@@ -1,6 +1,7 @@
 [
   {
     "title": "Test note",
-    "content": "test note."
+    "content": "test note.",
+    "user_id": 1
   }
 ]

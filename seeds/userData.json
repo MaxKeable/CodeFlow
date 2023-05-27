@@ -3,6 +3,7 @@
     "firstName": "Sal",
     "lastName": "Little",
     "email": "sal@hotmail.com",
-    "password": "12345678"
+    "password": "12345678",
+    "id": 1
   }
 ]
