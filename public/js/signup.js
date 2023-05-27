@@ -15,24 +15,24 @@ const signupFormHandler = async (event) => {
     if (password !== confirmpassword) {
       return alert("Passwords don't match!");
     }
-    let data = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
-    console.log(data);
-    //   const response = await fetch('/api/users', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ firstName, lastName, email, password }),
-    //     headers: { 'Content-Type': 'application/json' },
-    //   });
+    // let data = {
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   password,
+    // };
+    // console.log(data);
+    const response = await fetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify({ firstName, lastName, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-    //   if (response.ok) {
-    //     document.location.replace('/profile');
-    //   } else {
-    //     alert(response.statusText);
-    //   }
+    if (response.ok) {
+      document.location.replace("/homepage");
+    } else {
+      alert(response.statusText);
+    }
   }
 };
 
@@ -47,22 +47,22 @@ const signinFormHandler = async (event) => {
   const password = document.querySelector("#signin-password").value.trim();
 
   if (email && password) {
-    let data = {
-      email,
-      password,
-    };
-    console.log(data);
-    //   const response = await fetch('/api/users/login', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ email, password }),
-    //     headers: { 'Content-Type': 'application/json' },
-    //   });
+    // let data = {
+    //   email,
+    //   password,
+    // };
+    // console.log(data);
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-    //   if (response.ok) {
-    //     document.location.replace('/profile');
-    //   } else {
-    //     alert(response.statusText);
-    //   }
+    if (response.ok) {
+      document.location.replace("/homepage");
+    } else {
+      alert(response.statusText);
+    }
   }
 };
 
