@@ -146,10 +146,12 @@ body {
   display: flex;
   flex-direction: column;
   width: 10%;
+  background-color: #f8f9fa;
 }
 
 .week-btn-div button {
-  padding: 5px;
+  padding: 7px;
+  margin-bottom: 5px;
   font-size: 0.8em;
   border: none;
   background-color: #f8f9fa;
@@ -200,3 +202,26 @@ body {
 .notes-header h2 {
   color: var(--primary-color);
 }
+
+.notes {
+}
+
+.notes textarea {
+  width: 500px;
+  height: 250px;
+  resize: none;
+}
+
+.notes h3 {
+  color: var(--primary-color);
+}
+
+.notes-bottom-div {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
