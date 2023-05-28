@@ -148,8 +148,15 @@ router.get("/login", (req, res) => {
   res.render("signup");
 });
 
-router.get("/", (req, res) => {
-  res.render("homepage");
+
+router.get("/homepage", (req, res) => {
+  const logoURL = "../assets/codeFlowLogo.png";
+  res.render("homepage", { logoURL });
+});
+
+router.get("/js/homepage.js", function (req, res) {
+  res.setHeader("Content-Type", "application/javascript");
+  res.sendFile(path.join(__dirname, "../public/js/homepage.js"));
 });
 
 module.exports = router;
