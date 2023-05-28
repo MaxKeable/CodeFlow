@@ -2,8 +2,22 @@ const router = require("express").Router();
 const { Note, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", async (req, res) => {
+
+router.get("/", withAuth, async (req, res) => {
   try {
+    const codesnippetData = await CodeSnippet.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["firstName", "lastName", "email"],
+        },
+      ],
+    });
+
+    const codes = codesnippetData.map((codesnippet) =>
+      codesnippet.get({ plain: true })
+    );
+
     const noteData = await Note.findAll({
       include: [
         {
@@ -18,6 +32,7 @@ router.get("/", async (req, res) => {
 
     // Pass serialized data and session flag into template
     res.render("homepage", {
+      codes,
       notes,
       logged_in: req.session.logged_in,
     });
@@ -48,8 +63,58 @@ router.get("/note/:id", async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
-router.get("/note", withAuth, async (req, res) => {
+
+router.get("/codesnippets", async (req, res) => {
+  const codesnippetData = await CodeSnippet.findAll({
+    lean: true,
+  });
+  // const codesnippetData = await CodeSnippet.findAll({
+  //   include: [
+  //     {
+  //       model: User,
+  //       attributes: ["firstName", "lastName", "email"],
+  //     },
+  //   ],
+  // })
+
+  //const codesnippets = codesnippetData.get({ plain: true });
+  const codesnippets = codesnippetData;
+
+  console.log(codesnippets);
+
+  //const debugInformation = "hi";
+
+  res.render("codesnippet", {
+    //codesnippets: [{ title: "Date formatting" }, { title: "Promise all" }],
+    codesnippets,
+    logged_in: req.session.logged_in,
+  });
+});
+
+router.get("/codesnippets/:id", async (req, res) => {
+  try {
+    const codesnippetData = await CodeSnippet.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["firstName", "lastName", "email"],
+        },
+      ],
+    });
+
+    const codesnippet = codesnippetData.get({ plain: true });
+
+    res.render("codesnippet", {
+      ...codesnippet,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//user
+router.get("/", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
