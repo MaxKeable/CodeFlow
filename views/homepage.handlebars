@@ -1,4 +1,4 @@
-<script src="../public/js/homepage.js"></script>
+<script src="./js/homepage.js" type="text/javascript"></script>
 <nav class="homepage-nav">
   <img src="{{imageURL}}" alt="Image Description">
   <h2>Your Resources</h2>
@@ -40,21 +40,25 @@
       </div>
       <div class="notes">
         <form class="notes-form">
-          <h3>Title</h3>
-          <input id="title-input" type="text"></input>
+          <div class="notes-top-div">
+            <span>
+              <h3>Title</h3>
+              <input id="title-input" type="text" placeholder="title"></input>
+            </span>
+            <button id="save-button" type="submit">Save</button>
+          </div>
           <div class="notes-bottom-div">
             <span>
               <h3>Notes</h3>
-              <textarea id="notes-input"></textarea>
+              <textarea id="notes-input" placeholder="Write your weeks notes here"></textarea>
             </span>
             <span>
               <h3>Code Snippets</h3>
-              <textarea id="code-snippets-input"></textarea>
+              <textarea id="code-snippets-input" placeholder="Copy and paste your code snippets here"></textarea>
             </span>
           </div>
         </form>
       </div>
     </div>
-    <button id="save-button" type="submit">Save</button>
   </div>
 </div>
