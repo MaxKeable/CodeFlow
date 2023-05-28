@@ -22,7 +22,7 @@ const signupFormHandler = async (event) => {
     //   password,
     // };
     // console.log(data);
-    const response = await fetch("/api/users", {
+    const response = await fetch("/api/users/signup", {
       method: "POST",
       body: JSON.stringify({ firstName, lastName, email, password }),
       headers: { "Content-Type": "application/json" },
@@ -59,7 +59,8 @@ const signinFormHandler = async (event) => {
       document.location.replace("/");
     } else {
       console.log("[DORIS]: not ok");
-      alert(response.statusText);
+      // alert(response.statusText);
+      alert("Wrong email or password");
     }
   }
 };

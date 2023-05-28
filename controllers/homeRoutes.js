@@ -2,9 +2,22 @@ const router = require("express").Router();
 const { User, Note, CodeSnippet } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Note
-router.get("/", async (req, res) => {
+// CodeSnippet & Notes
+router.get("/", withAuth, async (req, res) => {
   try {
+    const codesnippetData = await CodeSnippet.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["firstName", "lastName", "email"],
+        },
+      ],
+    });
+
+    const codes = codesnippetData.map((codesnippet) =>
+      codesnippet.get({ plain: true })
+    );
+
     const noteData = await Note.findAll({
       include: [
         {
@@ -17,6 +30,7 @@ router.get("/", async (req, res) => {
     const notes = noteData.map((note) => note.get({ plain: true }));
 
     res.render("homepage", {
+      codes,
       notes,
       logged_in: req.session.logged_in,
     });
@@ -47,32 +61,34 @@ router.get("/notes/:id", async (req, res) => {
   }
 });
 
-// CodeSnippet
-router.get("/", async (req, res) => {
-  try {
-    const codesnippetData = await CodeSnippet.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["firstName", "lastName", "email"],
-        },
-      ],
-    });
+router.get("/codesnippets", async (req, res) => {
+  const codesnippetData = await CodeSnippet.findAll({
+    lean: true,
+  });
+  // const codesnippetData = await CodeSnippet.findAll({
+  //   include: [
+  //     {
+  //       model: User,
+  //       attributes: ["firstName", "lastName", "email"],
+  //     },
+  //   ],
+  // })
 
-    const codes = codesnippetData.map((codesnippet) =>
-      codesnippet.get({ plain: true })
-    );
+  //const codesnippets = codesnippetData.get({ plain: true });
+  const codesnippets = codesnippetData;
 
-    res.render("homepage", {
-      codes,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  console.log(codesnippets);
+
+  //const debugInformation = "hi";
+
+  res.render("codesnippet", {
+    //codesnippets: [{ title: "Date formatting" }, { title: "Promise all" }],
+    codesnippets,
+    logged_in: req.session.logged_in,
+  });
 });
 
-router.get("/codesnippet/:id", async (req, res) => {
+router.get("/codesnippets/:id", async (req, res) => {
   try {
     const codesnippetData = await CodeSnippet.findByPk(req.params.id, {
       include: [
