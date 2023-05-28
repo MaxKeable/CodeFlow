@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { User, Note, CodeSnippet } = require("../models");
+const { Note, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-// CodeSnippet & Notes
+
 router.get("/", withAuth, async (req, res) => {
   try {
     const codesnippetData = await CodeSnippet.findAll({
@@ -22,13 +22,15 @@ router.get("/", withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["firstName", "lastName", "email"],
+          //   attributes: ["user_name"],
         },
       ],
     });
 
+    // Serialize data so the template can read it
     const notes = noteData.map((note) => note.get({ plain: true }));
 
+    // Pass serialized data and session flag into template
     res.render("homepage", {
       codes,
       notes,
@@ -39,20 +41,20 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.get("/notes/:id", async (req, res) => {
+router.get("/note/:id", async (req, res) => {
   try {
     const noteData = await Note.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ["firstName", "lastName", "email"],
+          //   attributes: ["user_name"],
         },
       ],
     });
 
     const note = noteData.get({ plain: true });
 
-    res.render("notes", {
+    res.render("note", {
       ...note,
       logged_in: req.session.logged_in,
     });
@@ -60,6 +62,7 @@ router.get("/notes/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 router.get("/codesnippets", async (req, res) => {
   const codesnippetData = await CodeSnippet.findAll({
@@ -116,12 +119,12 @@ router.get("/", withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
-      include: [{ model: Note }, { model: CodeSnippet }],
+      include: [{ model: User }],
     });
 
     const user = userData.get({ plain: true });
 
-    res.render("homepage", {
+    res.render("note", {
       ...user,
       logged_in: true,
     });
@@ -133,7 +136,7 @@ router.get("/", withAuth, async (req, res) => {
 router.get("/signup", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/note");
     return;
   }
 
@@ -142,21 +145,16 @@ router.get("/signup", (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/note");
     return;
   }
-  res.render("signup");
+  res.render("login");
 });
-
 
 router.get("/homepage", (req, res) => {
+  res.render("homepage");
   const logoURL = "../assets/codeFlowLogo.png";
   res.render("homepage", { logoURL });
-});
-
-router.get("/js/homepage.js", function (req, res) {
-  res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(path.join(__dirname, "../public/js/homepage.js"));
 });
 
 module.exports = router;
