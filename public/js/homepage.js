@@ -7,6 +7,11 @@ const noteshandler = async (event) => {
     .value.trim();
   if (title) {
     console.log(title, notes, codeSnippets);
+    const response = await fetch("/api/notes", {
+      method: "POST",
+      body: JSON.stringify({ title, notes, codeSnippets }),
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
 
