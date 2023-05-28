@@ -87,7 +87,13 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/homepage", (req, res) => {
-  res.render("homepage");
+  const logoURL = "../assets/codeFlowLogo.png";
+  res.render("homepage", { logoURL });
+});
+
+router.get("/js/homepage.js", function (req, res) {
+  res.setHeader("Content-Type", "application/javascript");
+  res.sendFile(path.join(__dirname, "../public/js/homepage.js"));
 });
 
 module.exports = router;
