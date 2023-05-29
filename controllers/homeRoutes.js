@@ -1,43 +1,55 @@
 const router = require("express").Router();
-const { Note, User } = require("../models");
+const { Note, User ,CodeSnippet, Module} = require("../models");
 const withAuth = require("../utils/auth");
 
 
+
 router.get("/", withAuth, async (req, res) => {
+  console.log("testing")
   try {
-    const codesnippetData = await CodeSnippet.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["firstName", "lastName", "email"],
-        },
-      ],
-    });
-
-    const codes = codesnippetData.map((codesnippet) =>
-      codesnippet.get({ plain: true })
+    console.log("testing")
+    const modulesData = await Module.findAll ({
+      user_id: req.session.user_id
+    })
+    console.log(modulesData)
+    const modules = modulesData.map((m) =>
+      m.get({ plain: true })
     );
+    console.log(modules)
+//     const codesnippetData = await CodeSnippet.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ["firstName", "lastName", "email"],
+//         },
+//       ],
+//     });
+// console.log(codesnippetData)
+    // const codes = codesnippetData.map((codesnippet) =>
+    //   codesnippet.get({ plain: true })
+    // );
 
-    const noteData = await Note.findAll({
-      include: [
-        {
-          model: User,
-          //   attributes: ["user_name"],
-        },
-      ],
-    });
+    // const noteData = await Note.findAll({
+    //   include: [
+    //     {
+    //       model: User,
+    //       //   attributes: ["user_name"],
+    //     },
+    //   ],
+    // });
 
     // Serialize data so the template can read it
-    const notes = noteData.map((note) => note.get({ plain: true }));
+    // const notes = noteData.map((note) => note.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render("homepage", {
-      codes,
-      notes,
+      modules,
+      // codes,
+      // notes,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).send(err);
   }
 });
 
