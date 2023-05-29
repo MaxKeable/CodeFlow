@@ -1,6 +1,8 @@
 const User = require("./User");
 const Note = require("./Note");
 const CodeSnippet = require("./CodeSnippet");
+const Module = require("./Module");
+
 
 User.hasMany(Note, {
   foreignKey: "user_id",
@@ -19,5 +21,8 @@ User.hasMany(CodeSnippet, {
 CodeSnippet.belongsTo(User, {
   foreignKey: "user_id",
 });
-
-module.exports = { User, Note, CodeSnippet };
+User.hasMany(Module,{
+  foreignKey: "user_id",
+  onDelete: "CASCADE"
+})
+module.exports = { User, Note, CodeSnippet, Module };

@@ -6,8 +6,11 @@
 </nav>
 <div class="main-wrapper">
   <div class="week-btn-div">
-    <h2>WEEKS</h2>
-    <button>Week 1</button>
+    <h2>WEEKS  <input id="module-name-input" type="text" placeholder="module name"></input><button id="module-submit">+</button></h2>
+    {{#each modules as |module|}}
+    <button>{{module.name}}</button>
+    {{/each}}
+    {{!-- <button>Week 1</button>
     <button>Week 2</button>
     <button>Week 3</button>
     <button>Week 4</button>
@@ -30,7 +33,7 @@
     <button>Week 21</button>
     <button>Week 22</button>
     <button>Week 23</button>
-    <button>Week 24</button>
+    <button>Week 24</button> --}}
   </div>
   <div>
     <div class="main-section">
