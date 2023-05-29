@@ -3,7 +3,6 @@ const Note = require("./Note");
 const CodeSnippet = require("./CodeSnippet");
 const Module = require("./Module");
 
-
 User.hasMany(Note, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
@@ -21,8 +20,14 @@ User.hasMany(CodeSnippet, {
 CodeSnippet.belongsTo(User, {
   foreignKey: "user_id",
 });
-User.hasMany(Module,{
+User.hasMany(Module, {
   foreignKey: "user_id",
-  onDelete: "CASCADE"
-})
+  onDelete: "CASCADE",
+});
+
+Module.belongsTo(User, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
+
 module.exports = { User, Note, CodeSnippet, Module };

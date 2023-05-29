@@ -9,19 +9,11 @@ const signupFormHandler = async (event) => {
     .querySelector("#signup-password-confirm")
     .value.trim();
 
-  // console.log(firstName, lastName, email, password, confirmpassword);
-
   if (firstName && lastName && email && password && confirmpassword) {
     if (password !== confirmpassword) {
       return alert("Passwords don't match!");
     }
-    // let data = {
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   password,
-    // };
-    // console.log(data);
+
     const response = await fetch("/api/users/signup", {
       method: "POST",
       body: JSON.stringify({ firstName, lastName, email, password }),
@@ -43,11 +35,6 @@ const signinFormHandler = async (event) => {
   const password = document.querySelector("#signin-password").value.trim();
 
   if (email && password) {
-    // let data = {
-    //   email,
-    //   password,
-    // };
-    // console.log(data);
     const response = await fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -55,10 +42,8 @@ const signinFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      console.log("[DORIS]: ok");
       document.location.replace("/");
     } else {
-      console.log("[DORIS]: not ok");
       // alert(response.statusText);
       alert("Wrong email or password");
     }

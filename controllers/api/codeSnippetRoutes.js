@@ -5,12 +5,15 @@ const withAuth = require("../../utils/auth");
 // Create
 router.post("/", withAuth, async (req, res) => {
   try {
+    console.log("successful response");
+    console.log(req.body);
     const newCodeSnippet = await CodeSnippet.create({
       ...req.body,
       user_id: req.session.user_id,
     });
     res.status(200).json(newCodeSnippet);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
