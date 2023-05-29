@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class CodeSnippet extends Model {}
+class Module extends Model {}
 
-CodeSnippet.init(
+Module.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,32 +11,15 @@ CodeSnippet.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    // title: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    code: {
+    name: {
       type: DataTypes.STRING,
-    },
-    // explanation: {
-    //   type: DataTypes.STRING,
-    // },
-    date_created: {
-      type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
+   
     user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
-        key: "id",
-      },
-    },
-    module_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "module",
         key: "id",
       },
     },
@@ -46,7 +29,7 @@ CodeSnippet.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "code_snippet",
+    modelName: "module",
   }
 );
-module.exports = CodeSnippet;
+module.exports = Module;
