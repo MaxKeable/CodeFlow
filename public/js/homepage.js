@@ -6,7 +6,7 @@ const noteshandler = async (event) => {
     .querySelector("#code-snippets-input")
     .value.trim();
   if (title) {
-    console.log(title, notes, codeSnippets);
+    // console.log(title, notes, codeSnippets);
     const response = await fetch("/api/notes", {
       method: "POST",
       body: JSON.stringify({ title, notes, codeSnippets }),

@@ -1,4 +1,4 @@
-# Code Flow - Full Stack Application 
+# CodeFlow - Full Stack Application 
 
 Team: 07 Full Stack Application 
 
@@ -6,7 +6,7 @@ Team: 07 Full Stack Application
 
 ## Description 
 
-Code Flow is a powerful tool designed to enhance your coding learning and project development process. It provides a structured approach to organizing your study materials, capturing important coding concepts, and storing code snippets for future reference. By using CodeFlow, you can maximize your productivity and ensure a seamless workflow when working on coding projects. 
+Code Flow is a powerful tool designed to enhance your coding learning and project development process. It provides a structured approach to organising your study materials, capturing important coding concepts, and storing code snippets for future reference. By using CodeFlow, you can maximize your productivity and ensure a seamless workflow when working on coding projects. 
 
 ## Table of Contents:
 
@@ -14,39 +14,77 @@ Code Flow is a powerful tool designed to enhance your coding learning and projec
 - [Installation](#installation)
 - [Usage](#usage)
 - [Built With](#built-With)
-- [What We Learned](#what-I-Learned)
-- [The Challenge](#the-Challenge)
+- [Solution URL](#solution-url)
+- [Screenshots](#screenshots)
 - [Continued Development](#continued-Development)
-
+- [Team Resources](#team-resources)
+- [License](#license)
+- [Authors](#authors)
 
 ## Features 
 
-* Task List and Marking Criteria: Easily break down coding projects into task lists and establish marking criteria to ensure a structured and organised approach to project development.
-* Coding Concepts Outline: Study Helper allows you to outline and document key coding concepts encountered during your studies. This feature helps create a comprehensive reference guide for quick access to essential concepts.
+* Coding Concepts Outline: CodeFlow allows you to outline and document key coding concepts encountered during your studies. This feature helps create a comprehensive reference guide for quick access to essential concepts.
 * Code Snippet Storage: Store code snippets relevant to specific coding concepts or project requirements. The code snippets can be easily retrived and reused when working on future projects, saving your time and effort. 
-* Database for Projects and Notes: Study Helper incorporates a database to store passed projects and week's notes. This functionality enables effortless access to previous project details and study notes whenever key concepts need to be revisited. 
+* Database for Projects and Notes: CodeFlow incorporates a database to store passed projects and a week's notes. This functionality enables effortless access to previous project details and study notes whenever key concepts need to be revisited. 
 
 
 ## Installation 
 
+* node.js version 16.* installed on your computer prior to proceeding
+* MySQL installed on your computer prior to proceeding
+
 ## Usage
-1. Breaking Down Coding Projects 
 
 - Open CodeFlow in your browser
+- Log in or create an account
 - Create a new project or select an existing project from the interface.
-- Within the project, you can break down the coding tasks into task lists. Use headings or bullet points to define each task.
-- Establish marking criteria for the project, providing guidelines for evaluation and assessment. 
+- Within the project, you can save notes and code snippets
+- To store code snippets, copy the relevant code and paste it into the appropriate section. 
+- Use the CodeFlow interface to navigate to the desired project or week.
 
-2. Outlining Key Coding Concepts and Storing Code Snippets 
+## Buit With
+### Dependencies:
 
-- Navigate to the project or week where you want to outline coding concepts.
-- Create a new section or select an existing section within the project/week.
-- Add the key coding concepts, using headings or bullet points to structure your notes.
-- To store code snippets, copy the relevant code and paste it into the appropriate section. Add any necessary descriptions or context to facilitate future understanding.
-- Save the changes, ensuring that the code snippets and coding concept outlines are stored within the Study Helper database. 
+1. Node.bcrypt.js
+2. Connect Session Store using Sequelize
+3. Dotenv: [8.2.0]
+4. Express
+5. Express Handlebars: [5.2.0]
+6. Express-session: [1.17.1]
+7. Handlebars.js
+8. Node MySQL2: [2.2.5]
+9. Sequelize: [6.3.5]
 
-3. Accessing Passed Projects and Week's Notes 
+### Dev Dependencies:
+1. ESlint: [7.12.1]
+2. eslint-config-prettier: [6.15.0]
+3. prettier: [2.1.2]
 
-- Use the Code Flow interface to navigate to the desired project or week.
-- Retrieve the passed project details and review the associated marking criteria.
-- Access the week's notes and review the outlined coding concepts and stored code snippets. 
+## Solution URL:
+Solution URL Link: heroku link 
+
+## Screenshots:
+### Figure 1. Landing Page
+
+
+### Figure 2. The logged-in Page
+
+
+## Continued Development:
+1. Establishing a Profile and Settings page where the user can enter their preferences
+2. 
+3. 
+
+## Team Resources: 
+2. Heroku: [Application link](https://heroku.com/)
+3. GitHub: [Repo link](https://github.com/MaxKeable/CodeFlow)
+
+## License
+  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [Open Source Initiative Link](https://opensource.org/licenses/MIT)
+
+## Authors
+
+- [Max Keable](https://github.com/MaxKeable)
+- [Doris Chen](https://github.com/Chenson92)
+- [Alex Nanut](https://github.com/AlexNanut)
