@@ -1,30 +1,90 @@
 const router = require("express").Router();
-const { Note, User ,CodeSnippet, Module} = require("../models");
+const { Note, User, CodeSnippet, Module } = require("../models");
 const withAuth = require("../utils/auth");
 
-
-
-router.get("/", withAuth, async (req, res) => {
-  console.log("testing")
-  try {
-    console.log("testing")
-    const modulesData = await Module.findAll ({
-      user_id: req.session.user_id
-    })
-    console.log(modulesData)
-    const modules = modulesData.map((m) =>
-      m.get({ plain: true })
-    );
-    console.log(modules)
-//     const codesnippetData = await CodeSnippet.findAll({
+// router.get("/", async (req, res) => {
+//   try {
+//     // Get all projects and JOIN with user data
+//     const moduleData = await Module.findAll({
 //       include: [
 //         {
 //           model: User,
-//           attributes: ["firstName", "lastName", "email"],
 //         },
 //       ],
 //     });
-// console.log(codesnippetData)
+
+//     // Serialize data so the template can read it
+//     const modules = moduleData.map((module) => module.get({ plain: true }));
+
+//     // Pass serialized data and session flag into template
+//     res.render("modules", {
+//       modules,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get("/modules/:id", async (req, res) => {
+//   try {
+//     const moduleData = await Module.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//         },
+//       ],
+//     });
+
+//     const module = moduleData.get({ plain: true });
+
+//     res.render("modules", {
+//       ...module,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get("/", withAuth, async (req, res) => {
+  try {
+    const modulesData = await Module.findAll({
+      user_id: req.session.user_id,
+    });
+    console.log(modulesData);
+    const modules = modulesData.map((m) => m.get({ plain: true }));
+    console.log(modules);
+
+    // router.get("/modules/:id", async (req, res) => {
+    //   try {
+    //     const modulesData = await Module.findByPk(req.params.id, {
+    //       include: [
+    //         {
+    //           model: User,
+    //         },
+    //       ],
+    //     });
+
+    //     const module = modulesData.get({ plain: true });
+
+    //     res.render("modules", {
+    //       ...module,
+    //       logged_in: req.session.logged_in,
+    //     });
+    //   } catch (err) {
+    //     res.status(500).json(err);
+    //   }
+    // });
+    //     const codesnippetData = await CodeSnippet.findAll({
+    //       include: [
+    //         {
+    //           model: User,
+    //           attributes: ["firstName", "lastName", "email"],
+    //         },
+    //       ],
+    //     });
+    // console.log(codesnippetData)
     // const codes = codesnippetData.map((codesnippet) =>
     //   codesnippet.get({ plain: true })
     // );
@@ -41,7 +101,7 @@ router.get("/", withAuth, async (req, res) => {
     // Serialize data so the template can read it
     // const notes = noteData.map((note) => note.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
+    //     // Pass serialized data and session flag into template
     res.render("homepage", {
       modules,
       // codes,
@@ -50,6 +110,27 @@ router.get("/", withAuth, async (req, res) => {
     });
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+router.get("/modules/:id", async (req, res) => {
+  try {
+    const modulesData = await Module.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+
+    const module = modulesData.get({ plain: true });
+
+    res.render("modules", {
+      ...module,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -74,7 +155,6 @@ router.get("/note/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 router.get("/codesnippets", async (req, res) => {
   const codesnippetData = await CodeSnippet.findAll({

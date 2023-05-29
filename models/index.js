@@ -27,5 +27,7 @@ User.hasMany(Module, {
 
 Module.belongsTo(User, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
+
 module.exports = { User, Note, CodeSnippet, Module };
