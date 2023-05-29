@@ -1,0 +1,16 @@
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3> New Code Snippet:</h3>
+
+    <form class="form new-codeSnippet-form">
+      <div class="form-group">
+        <label for="codeSnippet-name">Code snippet name:</label>
+        <input class="form-input" type="text" id="codeSnippet-name" name="codeSnippet-name" />
+      </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+         {{#each modules as |module|}}
+    <button>{{module.name}}</button>
+    {{/each}}
+      </div>
+    </form>
+  </div>
