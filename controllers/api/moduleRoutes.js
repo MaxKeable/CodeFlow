@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const { Note } = require("../../models");
+const { Module } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // Create
 router.post("/", withAuth, async (req, res) => {
   try {
-    const newNoteData = await Note.create({
+    const newModuleData = await Module.create({
       ...req.body,
       user_id: req.session.user_id,
     });
-    res.status(200).json(newNoteData);
+    res.status(200).json(newModuleData);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -17,19 +17,19 @@ router.post("/", withAuth, async (req, res) => {
 
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const noteData = await Note.destroy({
+    const moduleData = await Module.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!noteData) {
-      res.status(404).json({ message: "No Note found with this id!" });
+    if (!moduleData) {
+      res.status(404).json({ message: "No Module found with this id!" });
       return;
     }
 
-    res.status(200).json(noteData);
+    res.status(200).json(moduleData);
   } catch (err) {
     res.status(500).json(err);
   }
