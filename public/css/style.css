@@ -116,6 +116,13 @@ body {
   border: solid 1px var(--darkGreen-color);
 }
 
+.sign-up-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 380px;
+}
+
 .sign-up-details {
   display: flex;
   flex-direction: column;
@@ -126,16 +133,21 @@ body {
   background-color: var(--primary-color);
 }
 
-.sign-up-details h2 {
-  color: var(--secondary-color);
-}
-
 .sign-up-details h3 {
   color: var(--secondary-color);
+  margin: 20px;
 }
 
 .sign-up-details p {
   color: white;
+  margin-bottom: 60px;
+  margin-left: 25px;
+}
+
+.sign-up-details img {
+  margin-bottom: 70px;
+  width: 200px;
+  height: auto;
 }
 
 .sign-up-page {
@@ -242,3 +254,8 @@ body {
   border-radius: 20px;
 }
 
+@media (max-width: 850px) {
+  .sign-up-details {
+    display: none;
+  }
+}
