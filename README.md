@@ -65,15 +65,16 @@ Solution URL Link: heroku link
 
 ## Screenshots:
 ### Figure 1. Landing Page
+<img width="1440" alt="login" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/550303a0-4812-4fca-8e22-b4388e38e492">
 
-
-### Figure 2. The logged-in Page
+### Figure 2. The Homepage 
+![homepage](https://github.com/MaxKeable/CodeFlow/assets/108309770/e588072d-96fb-47f7-94c7-f47004d00641)
 
 
 ## Continued Development:
 1. Establishing a Profile and Settings page where the user can enter their preferences
-2. 
-3. 
+2. Adding comment function so users can share their thoughts and ideas
+3. Navigating to the project or week where users can  outline coding concepts
 
 ## Team Resources: 
 2. Heroku: [Application link](https://heroku.com/)
