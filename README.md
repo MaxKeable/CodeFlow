@@ -68,7 +68,7 @@ Solution URL Link: heroku link
 <img width="1440" alt="login" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/550303a0-4812-4fca-8e22-b4388e38e492">
 
 ### Figure 2. The Homepage 
-![homepage](https://github.com/MaxKeable/CodeFlow/assets/108309770/e588072d-96fb-47f7-94c7-f47004d00641)
+<img width="1440" alt="homepage" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/3dd80472-4eb6-441a-ab19-f88f29c5a539">
 
 
 ## Continued Development:
