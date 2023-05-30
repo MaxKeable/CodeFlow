@@ -65,10 +65,9 @@ Solution URL Link: heroku link
 
 ## Screenshots:
 ### Figure 1. Landing Page
-<img width="1440" alt="login" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/550303a0-4812-4fca-8e22-b4388e38e492">
-
-### Figure 2. The Homepage 
 <img width="1440" alt="homepage" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/3dd80472-4eb6-441a-ab19-f88f29c5a539">
+### Figure 2. The Homepage 
+<img width="1440" alt="login" src="https://github.com/MaxKeable/CodeFlow/assets/108309770/550303a0-4812-4fca-8e22-b4388e38e492">
 
 
 ## Continued Development:
