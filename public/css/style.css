@@ -22,7 +22,7 @@ body {
   background-color: var(--primary-color);
   color: white;
   padding: 5px 20px;
-  border: solid 2px var(--darkGreen-color);
+  border: solid 2px white;
   border-radius: 5px;
 }
 
@@ -39,6 +39,11 @@ body {
   color: white;
 }
 
+.homepage-nav img {
+  width: 80px;
+  height: auto;
+}
+
 .forms-wrapper {
   display: flex;
   flex-direction: column;
@@ -46,6 +51,10 @@ body {
   align-items: center;
   height: 100vh;
   width: 50%;
+}
+
+.forms-wrapper img {
+  display: none;
 }
 
 .sign-up-form {
@@ -179,6 +188,13 @@ body {
   color: var(--primary-color);
 }
 
+.week-btn-div input {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px var(--darkGreen-color);
+}
+
 .main-wrapper {
   display: flex;
   margin-top: 30px;
@@ -193,22 +209,8 @@ body {
 }
 
 .notes-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 60px;
-}
-
-.notes-header button {
-  background-color: var(--primary-color);
-  color: white;
-  border: solid 2px var(--darkGreen-color);
-  padding: 5px 20px;
-}
-
-.notes-header button:hover {
-  background-color: var(--darkGreen-color);
-  color: white;
 }
 
 .notes-header h2 {
@@ -217,6 +219,7 @@ body {
 
 .notes input {
   border: 0.5px solid var(--darkGreen-color);
+  border-radius: 5px;
 }
 
 .notes textarea {
@@ -224,6 +227,7 @@ body {
   height: 250px;
   resize: none;
   border: 0.5px solid var(--darkGreen-color);
+  border-radius: 10px;
 }
 
 .notes h3 {
@@ -245,6 +249,10 @@ body {
   border-radius: 5px;
 }
 
+.notes-top-div button:hover {
+  background-color: var(--darkGreen-color);
+}
+
 .notes-bottom-div {
   display: flex;
   justify-content: space-evenly;
@@ -254,8 +262,22 @@ body {
   border-radius: 20px;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 770px) {
   .sign-up-details {
     display: none;
+  }
+  .sign-up-page {
+    display: flex;
+    justify-content: center;
+  }
+  .forms-wrapper {
+    width: 100%;
+    height: 150vh;
+  }
+  .forms-wrapper img {
+    display: block;
+    height: 150px;
+    width: auto;
+    margin-bottom: 50px;
   }
 }
