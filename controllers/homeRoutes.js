@@ -49,63 +49,17 @@ const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, async (req, res) => {
   try {
-    const modulesData = await Module.findAll({
+    const noteData = await Note.findAll({
       user_id: req.session.user_id,
     });
-    console.log(modulesData);
-    const modules = modulesData.map((m) => m.get({ plain: true }));
-    console.log(modules);
+    console.log(noteData);
+    const notes = noteData.map((m) => m.get({ plain: true }));
+    console.log(notes);
 
-    // router.get("/modules/:id", async (req, res) => {
-    //   try {
-    //     const modulesData = await Module.findByPk(req.params.id, {
-    //       include: [
-    //         {
-    //           model: User,
-    //         },
-    //       ],
-    //     });
-
-    //     const module = modulesData.get({ plain: true });
-
-    //     res.render("modules", {
-    //       ...module,
-    //       logged_in: req.session.logged_in,
-    //     });
-    //   } catch (err) {
-    //     res.status(500).json(err);
-    //   }
-    // });
-    //     const codesnippetData = await CodeSnippet.findAll({
-    //       include: [
-    //         {
-    //           model: User,
-    //           attributes: ["firstName", "lastName", "email"],
-    //         },
-    //       ],
-    //     });
-    // console.log(codesnippetData)
-    // const codes = codesnippetData.map((codesnippet) =>
-    //   codesnippet.get({ plain: true })
-    // );
-
-    // const noteData = await Note.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       //   attributes: ["user_name"],
-    //     },
-    //   ],
-    // });
-
-    // Serialize data so the template can read it
-    // const notes = noteData.map((note) => note.get({ plain: true }));
-
-    //     // Pass serialized data and session flag into template
     res.render("homepage", {
-      modules,
+      // modules,
       // codes,
-      // notes,
+      notes,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -113,41 +67,19 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.get("/modules/:id", async (req, res) => {
+router.get("/notes/:id", async (req, res) => {
   try {
-    const modulesData = await Module.findByPk(req.params.id, {
+    const noteData = await Module.findByPk(req.params.id, {
       include: [
         {
           model: User,
-        },
-      ],
-    });
-
-    const module = modulesData.get({ plain: true });
-
-    res.render("modules", {
-      ...module,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get("/note/:id", async (req, res) => {
-  try {
-    const noteData = await Note.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          //   attributes: ["user_name"],
         },
       ],
     });
 
     const note = noteData.get({ plain: true });
 
-    res.render("note", {
+    res.render("homepage", {
       ...note,
       logged_in: req.session.logged_in,
     });
@@ -155,6 +87,28 @@ router.get("/note/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// router.get("/note/:id", async (req, res) => {
+//   try {
+//     const noteData = await Note.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//           //   attributes: ["user_name"],
+//         },
+//       ],
+//     });
+
+//     const note = noteData.get({ plain: true });
+
+//     res.render("note", {
+//       ...note,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get("/codesnippets", async (req, res) => {
   const codesnippetData = await CodeSnippet.findAll({
